@@ -21,10 +21,13 @@ function UpdateMovie(props) {
     }, [match.params.id, movies])
 
     const changeHandler = e => {
+
         setUpdatedMovie({
             ...updatedMovie,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name !== "stars" ? e.target.value : e.target.value.split(",")
+
         })
+
     }
 
     const handleSubmit = e => {
@@ -63,6 +66,14 @@ function UpdateMovie(props) {
                 name="metascore"
                 value={updatedMovie.metascore}
                 placeholder="metascore"
+                onChange={changeHandler}
+            />
+            <label>Stars</label>
+            <input
+                type="text"
+                name="stars"
+                value={updatedMovie.stars}
+                placeholder="stars"
                 onChange={changeHandler}
             />
             <button>Update</button>
